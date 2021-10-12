@@ -1,6 +1,10 @@
 .journal__main-content {
     display: flex;
 }
+main{
+    background-color: rgb(223, 213, 238);
+    width: 100%;
+}
 
 .journal__sidebar {
     background-color: $dark-grey;

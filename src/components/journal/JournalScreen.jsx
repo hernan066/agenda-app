@@ -10,9 +10,11 @@ const JournalScreen = () => {
         <div className="journal__main-content">
             <Sidebar />
             <main>
-               {/*  <NothingSelected /> */}
                <NoteScreen />
+                
             </main>
+               {/*  <NothingSelected /> */}
+            
         </div>
     )
 }
