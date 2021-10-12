@@ -4,9 +4,11 @@ import AuthRouter from './AuthRouter';
 import {
     BrowserRouter as Router,
     Switch,
-    Redirect
+    Redirect,
+    Route
   } from 'react-router-dom';
-import { PublicRoute } from './PublicRoute';
+import JournalScreen from '../journal/JournalScreen';
+//import { PublicRoute } from './PublicRoute';
 
 
 const AppRouter = () => {
@@ -15,14 +17,20 @@ const AppRouter = () => {
             <Router>
                 <div>
                     <Switch>
-                    <PublicRoute 
+                    <Route 
                         path="/auth"
                         component={ AuthRouter }
                         
                     />
+                    <Route 
+                        path="/"
+                        component={ JournalScreen }
+                        exact
+                        
+                    />
                     </Switch>
 
-                    <Redirect to="/auth/login" />
+                    {/* <Redirect to="/auth/login" /> */}
                 
                 </div>
             </Router>
