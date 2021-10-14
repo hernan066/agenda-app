@@ -4,7 +4,7 @@ import AuthRouter from './AuthRouter';
 import {
     BrowserRouter as Router,
     Switch,
-    Redirect,
+   
     Route
   } from 'react-router-dom';
 import JournalScreen from '../journal/JournalScreen';
