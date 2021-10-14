@@ -1,26 +1,58 @@
 import React from 'react';
 import {Link } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
+import validator from 'validator'
 
 const RegisterScreen = () => {
     
     const [ formValues, handleInputChange]= useForm({
         name: 'joy',
         email: 'hola@hola.com',
-        password: 123456,
-        password2: 123456,
+        password: "1234567",
+        password2: "1234567",
       });
     
       const { name, email, password, password2}= formValues;
       const handleRegister = (e)=>{
         e.preventDefault();
+        console.log(name, email, password, password2);
+        if(isFormValid()){
+            console.log('Formulario correcto')
+        }
       }
-    
+      
+      /////////////////////////////////////////////////////////////////////////////////
+      //La validacion puede hacerse con useState, pero se va a usar redux como practica
+      //Para validar se usa validator
+      //https://www.npmjs.com/package/validator
+      /////////////////////////////////////////////////////////////////////////////////
+      
+      const isFormValid = ()=> {
+          
+        if(name.trim().length === 0){
+            console.log('El nombre es obligatorio');
+            return false;
+        }else if (!validator.isEmail( email)){
+            console.log('El email no es valido');
+            return false;
+        }else if (password !== password2 || password.length < 5){
+            console.log('Las contraseña debe tener minimo 6 caracteres, y ser iguales');
+            return false;
+        }
+        
+        return true;
+
+      }
     
     return (
         <div>
       <h3 className="auth__title">Register</h3>
       <form onSubmit={handleRegister}>
+        
+        <div className="auth__alert-error">
+            hola
+        </div>
+        
         <input 
             type="text" 
             placeholder="Name" 
@@ -42,7 +74,7 @@ const RegisterScreen = () => {
         <input 
             type="password" 
             placeholder="Password" 
-            name="Password" 
+            name="password" 
             className="auth__input" 
             value={password}
             onChange={handleInputChange}
