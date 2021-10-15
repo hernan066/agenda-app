@@ -4,19 +4,24 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPas
 
 
 import { app } from "../../firebase/firebase-config";
+import { finishLoading, startLoading } from "./ui";
 
 
 export const starLoginEmailPassword = (email, password) => {
     return async(dispatch)=>{
        try {
+        dispatch(startLoading());
+        
         const auth = getAuth(app);
         const res = await signInWithEmailAndPassword(auth, email, password);
 
         dispatch(
             login(res.user.uid, res.user.displayName)
-        )
+        );
+        dispatch(finishLoading());
        } catch (error) {
-            console.log(error.code)
+            console.log(error.code);
+            dispatch(finishLoading());
        }
     }
 }
@@ -72,3 +77,5 @@ export const login = (uid, displayName)=>{
         }
     }
 }
+
+
