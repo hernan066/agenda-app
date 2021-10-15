@@ -1,6 +1,8 @@
 import { types } from "../../types/types"
 /* import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth"; */
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+
+
 import { app } from "../../firebase/firebase-config";
 
 
@@ -11,6 +13,32 @@ export const starLoginEmailPassword = (email, password) => {
         }, 3500);
     }
 }
+
+
+
+export const starRegisterWithEmailPasswordName = (email, password, name )=>{
+    return async (dispatch)=>{
+        try {
+            const auth = getAuth(app);
+            const res = await createUserWithEmailAndPassword(auth, email, password);
+            
+            await updateProfile(auth.currentUser,{ displayName: name});
+
+            dispatch(
+                login(res.user.uid, res.user.displayName)
+            )
+            
+           /*  console.log(res.user) */
+        } catch (error) {
+            console.log(error.code)
+        }
+    }
+}
+
+
+
+
+
 
 export const starGoogleLogin = ()=>{
     return async(dispatch)=>{
