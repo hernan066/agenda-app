@@ -1,16 +1,23 @@
 import { types } from "../../types/types"
 /* import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth"; */
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile,  signInWithEmailAndPassword } from "firebase/auth";
 
 
 import { app } from "../../firebase/firebase-config";
 
 
 export const starLoginEmailPassword = (email, password) => {
-    return (dispatch)=>{
-        setTimeout(() => {
-            dispatch ( login(123, 'pedro'))
-        }, 3500);
+    return async(dispatch)=>{
+       try {
+        const auth = getAuth(app);
+        const res = await signInWithEmailAndPassword(auth, email, password);
+
+        dispatch(
+            login(res.user.uid, res.user.displayName)
+        )
+       } catch (error) {
+            console.log(error.code)
+       }
     }
 }
 
