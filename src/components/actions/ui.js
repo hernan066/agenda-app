@@ -1,5 +1,12 @@
 import { types } from "../../types/types"
 
+//////////////////////////////////////////////////////////
+//Aca van las acciones sincronas, si devuelve una sola linea no hace falta el return
+//////////////////////////////////////////////////////////
+
+
+
+
 export const setError = (err)=>({
     type: types.uiSetError,
     payload: err
