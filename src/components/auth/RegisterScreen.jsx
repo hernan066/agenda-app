@@ -29,9 +29,9 @@ const RegisterScreen = () => {
       const { name, email, password, password2}= formValues;
       const handleRegister = (e)=>{
         e.preventDefault();
-        console.log(name, email, password, password2);
+        
         if(isFormValid()){
-            console.log('Formulario correcto')
+           
             dispatch (starRegisterWithEmailPasswordName(email, password, name))
             
         }

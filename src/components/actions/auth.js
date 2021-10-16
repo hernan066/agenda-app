@@ -60,7 +60,14 @@ export const starRegisterWithEmailPasswordName = (email, password, name )=>{
             
            /*  console.log(res.user) */
         } catch (error) {
-            console.log(error.code)
+            if (error.code === "auth/invalid-email") {
+                Swal.fire('Error', 'Email no valido', 'error');
+                return;
+              }
+              if (error.code === "auth/email-already-in-use") {
+                Swal.fire('Error', 'El email ya esta en uso', 'error');
+                return;
+              }
         }
     }
 }
