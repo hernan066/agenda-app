@@ -11,8 +11,8 @@ const LoginScreen = () => {
  const {loading} = useSelector(state => state.ui)
  
   const [ formValues, handleInputChange]= useForm({
-    email: 'hola@hola.com',
-    password: 1234567,
+    email:'hola@hola.com',
+    password:'1234567',
   });
 
   const { email, password}= formValues;
@@ -40,7 +40,7 @@ const LoginScreen = () => {
         <input 
             type="password" 
             placeholder="Password" 
-            name="Password" 
+            name="password" 
             className="auth__input" 
             value={password}
             onChange={handleInputChange}

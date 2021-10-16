@@ -1,3 +1,12 @@
+////////////////////////////////////////////////////////////////
+//Mensaje de alerta
+//https://sweetalert2.github.io/
+//npm install sweetalert2
+////////////////////////////////////////////////////////////////
+
+
+
+
 import { types } from "../../types/types"
 /* import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth"; */
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile,  signInWithEmailAndPassword, signOut } from "firebase/auth";
@@ -5,6 +14,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPas
 
 import { app } from "../../firebase/firebase-config";
 import { finishLoading, startLoading } from "./ui";
+import Swal from "sweetalert2";
 
 
 export const starLoginEmailPassword = (email, password) => {
@@ -20,8 +30,16 @@ export const starLoginEmailPassword = (email, password) => {
         );
         dispatch(finishLoading());
        } catch (error) {
-            console.log(error.code);
+           
             dispatch(finishLoading());
+            
+
+            if (error.code === "auth/user-not-found") {
+                Swal.fire('Error', 'Usuario no encontrado', 'error');
+              }
+              if (error.code === "auth/wrong-password") {
+                Swal.fire('Error', 'Contraseña incorrecta', 'error');
+              }
        }
     }
 }
