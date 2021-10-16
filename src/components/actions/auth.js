@@ -1,6 +1,6 @@
 import { types } from "../../types/types"
 /* import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth"; */
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile,  signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile,  signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 
 import { app } from "../../firebase/firebase-config";
@@ -76,6 +76,19 @@ export const login = (uid, displayName)=>{
             displayName,
         }
     }
-}
+};
+
+export const starLogout = ()=>{
+    return async(dispatch)=>{
+        const auth = getAuth();
+        await signOut(auth);
+
+        dispatch(logout());
+    }
+};
+
+export const logout = ()=>({
+    type: types.logout
+})
 
 
