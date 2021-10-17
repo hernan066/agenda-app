@@ -15,6 +15,8 @@ import { login } from '../actions/auth';
 import LoadinScreen from '../auth/LoadinScreen';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
+import { loadNotes } from '../../helpers/loadNotes';
+import { setNotes } from '../actions/notes';
 
 
 const AppRouter = () => {
@@ -26,11 +28,15 @@ const AppRouter = () => {
     const [isLoging, setIsLoging] = useState(false);
     
     useEffect(() => {
-        onAuthStateChanged(auth, (user)=>{
+        onAuthStateChanged(auth, async(user)=>{
             //user?.uid si el objeto user tiene algo (no null), pregunta si existe el uid
             if(user?.uid){
                 dispatch(login(user.uid, user.displayName));
                 setIsLoging(true);
+
+                const notes = await loadNotes (user.uid);
+
+                dispatch(setNotes (notes))
             }else{
                 setIsLoging( false)
             }
