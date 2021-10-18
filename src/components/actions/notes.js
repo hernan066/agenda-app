@@ -5,8 +5,8 @@
  //       console.log(state)
 /////////////////////////////////////////////////////////////
 
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { app } from "../../firebase/firebase-config";
+import { getFirestore, collection, addDoc, updateDoc, doc } from "firebase/firestore";
+import { app, db } from "../../firebase/firebase-config";
 import { loadNotes } from "../../helpers/loadNotes";
 import { types } from "../../types/types";
 
@@ -51,3 +51,20 @@ export const setNotes = ( notes ) => ({
     type: types.notesLoad,
     payload: notes
 });
+
+export const startSaveNote = (note)=> {
+    return async (dispatch, getState)=> {
+        
+        const {uid} = getState().auth;
+
+        if(!note.url){
+            delete note.url;
+        }
+        
+        const noteToFirebase = {...note};
+        delete noteToFirebase.id;
+
+        const edit = doc(db, `${uid}/journal/notes/${note.id}`);
+        await updateDoc(edit, noteToFirebase);
+    }
+}
