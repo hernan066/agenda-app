@@ -5,6 +5,7 @@
 
 
 import moment from 'moment'
+import 'moment/locale/es'
 import React from 'react'
 
 import { useDispatch } from 'react-redux'
@@ -49,9 +50,9 @@ const JournalEntry = ({id, date, title, body, url}) => {
                         {body}
                     </p>
            </div>
-           <div className="journal_entry-date-box">
-               <span>{noteDate.format('dddd')}</span>
-               <h4>{noteDate.format('Do')}</h4>
+           <div className="journal__entry-date-box">
+               <span>Fecha</span> 
+               <h5>{noteDate.format('L')}</h5>
 
            </div>
         </div>
