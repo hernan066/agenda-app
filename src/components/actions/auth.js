@@ -15,6 +15,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPas
 import { app } from "../../firebase/firebase-config";
 import { finishLoading, startLoading } from "./ui";
 import Swal from "sweetalert2";
+import { noteLogout } from "./notes";
 
 
 export const starLoginEmailPassword = (email, password) => {
@@ -109,6 +110,7 @@ export const starLogout = ()=>{
         await signOut(auth);
 
         dispatch(logout());
+        dispatch(noteLogout());
     }
 };
 
