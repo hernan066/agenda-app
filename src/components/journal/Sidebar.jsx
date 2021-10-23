@@ -18,19 +18,17 @@ const Sidebar = () => {
     
     
     return (
-        <aside className="journal__sidebar">
+        <aside className="journal__sidebar ">
             <div className="journal__sidebar-navbar">
                 <h3 className="mt-5">
-                <i className="fa-solid fa-moon"></i>
-                    <span>
-                        {name}
-                    </span>
+                <i class="fas fa-user"></i>  {name}
+                   
                 </h3>
                 <button 
                     className="btn"
                     onClick={handleLogout}
                 >
-                    Logout
+                   <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             </div>
             <div 
@@ -39,7 +37,7 @@ const Sidebar = () => {
             >
                 <i className="far fa-calendar-plus fa-5x"></i>
                 <p>
-                    New entry
+                    Nueva entrada
                 </p>
             </div>
 

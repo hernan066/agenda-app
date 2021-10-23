@@ -25,6 +25,7 @@
 
 .notes__title-input, .notes__textarea {
     border: none;
+    border-radius: 5px;
 
     &:focus{
         outline: none;
@@ -36,6 +37,7 @@
     font-size: 25px;
     font-weight: 700;
     margin-bottom: 10px;
+   
 }
 
 .notes__textarea {
@@ -47,6 +49,12 @@
 }
 
 .notes__image img {
+    margin-top: 20px;
+    border-radius: 5px;
     box-shadow: 5px 5px $dark-grey;
     height: 150px;
+}
+.notes__image{
+    display: flex;
+    justify-content: center;
 }

@@ -20,7 +20,8 @@ export const loadNotes = async ( uid )=>{
     console.log(notes)
 
      notes.sort((a, b)=>{
-        return a.date - b.date;
+        /* return a.date - b.date; */
+        return b.date - a.date;
     });
 
     

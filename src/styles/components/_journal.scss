@@ -2,7 +2,7 @@
     display: flex;
 }
 main{
-    background-color: rgb(223, 213, 238);
+    background-color:   $dark-grey;
     width: 100%;
 }
 
@@ -15,6 +15,7 @@ main{
     padding-left: 10px;
     padding-right: 10px;
     width: 450px;
+    border-right: rgb(83, 83, 83) 1px solid;
 }
 
 .journal__sidebar-navbar {

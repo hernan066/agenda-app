@@ -13,7 +13,7 @@ import { activeNote } from '../actions/notes'
 
 const JournalEntry = ({id, date, title, body, url}) => {
     
-    const noteDate = moment()
+    const noteDate = moment(date)
 
     const dispatch = useDispatch()
     
@@ -26,7 +26,7 @@ const JournalEntry = ({id, date, title, body, url}) => {
     
     return (
         <div 
-            className="journal__entry pointer"
+            className="journal__entry pointer animate__animated animate__bounceInLeft"
             onClick= {handleEntryClick}
         
         >

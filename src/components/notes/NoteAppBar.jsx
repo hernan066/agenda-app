@@ -47,13 +47,13 @@ const NoteAppBar = () => {
                     className="btn"
                     onClick={handlePictureUpload}
                 >
-                    Picture
+                   <i class="fas fa-paperclip"></i> Agregar imagen
                 </button>
                 <button 
                     className="btn"
                     onClick={handleUpdate}
                 >
-                    Save
+                   <i class="far fa-save"></i> Guardar
                 </button>
             </div>
         </div>
